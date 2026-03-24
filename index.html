@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The AC Wallah | Best AC Repair in Delhi | Authorized Appliance Experts</title>
+    <meta name="description" content="The AC Wallah provides authorized AC repair, washing machine service, and fridge repair in Delhi NCR. MSME Registered. Same-day service in Badarpur, Rohini, and Dwarka.">
+    <meta name="keywords" content="The AC Wallah, The AC Wallah Delhi, Best AC Repair in Delhi, AC Repair Service near me, Affordable AC Service near me, Washing Machine Repair in Delhi, Fridge Repair Service near me, AC Installation in Delhi NCR, AC AMC Service in Delhi">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theacwallah.com/">
+    <meta property="og:title" content="The AC Wallah | Best AC Repair in Delhi | Appliance Repair Specialists">
+    <meta property="og:description" content="Legally registered AC repair, installation, and AMC services in Delhi NCR. Same-day service by The AC Wallah experts.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1621905252507-b35482cd34b4?q=80&w=2070&auto=format&fit=crop">
+
+    <!-- Tailwind CDN with Typography Plugin -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            screens: {
+              'xs': '375px',
+            },
+            keyframes: {
+              scan: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' },
+              },
+              spinSlow: {
+                from: { transform: 'rotate(0deg)' },
+                to: { transform: 'rotate(360deg)' }
+              },
+              pulseRing: {
+                '0%': { transform: 'scale(0.98)', boxShadow: '0 0 0 0 rgba(37, 99, 235, 0.7)' },
+                '70%': { transform: 'scale(1)', boxShadow: '0 0 0 10px rgba(37, 99, 235, 0)' },
+                '100%': { transform: 'scale(0.98)', boxShadow: '0 0 0 0 rgba(37, 99, 235, 0)' },
+              }
+            },
+            animation: {
+              scan: 'scan 2s infinite',
+              'spin-slow': 'spinSlow 10s linear infinite',
+              'pulse-ring': 'pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <style>
+        html, body { 
+          margin: 0; 
+          padding: 0; 
+          width: 100%; 
+          overflow-x: hidden; 
+          font-family: 'Inter', sans-serif;
+        }
+        .bg-blue-gradient { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+        .bg-dots {
+          background-image: radial-gradient(#3b82f6 0.8px, transparent 0.8px);
+          background-size: 24px 24px;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        
+        .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    
+    <script>window.process = { env: { NODE_ENV: 'production' } };</script>
+
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "The AC Wallah",
+      "legalName": "The AC Wallah Delhi",
+      "taxID": "07AAZFD1338B1ZH",
+      "image": "https://images.unsplash.com/photo-1621905252507-b35482cd34b4?q=80&w=2070&auto=format&fit=crop",
+      "url": "https://theacwallah.com",
+      "telephone": "+918521123304",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ground Floor Shop, Jai Ram House, Block-B, Hari Nagar Part-2, Badarpur",
+        "addressLocality": "South East Delhi",
+        "addressRegion": "Delhi",
+        "postalCode": "110044",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 28.5024,
+        "longitude": 77.3015
+      }
+    }
+    </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.574.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-white text-gray-900 overflow-x-hidden">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

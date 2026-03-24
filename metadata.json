@@ -1,0 +1,8 @@
+
+{
+  "name": "The AC Wallah - Best AC & Appliance Repair in Delhi",
+  "description": "Looking for the best AC repair in Delhi? The AC Wallah provide affordable AC service, washing machine repair, fridge repair, installation & AMC services across Delhi NCR. Call now!",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
