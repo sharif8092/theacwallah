@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { COMPANY_NAME, PHONE_NUMBER, EMAIL, ADDRESS, AREAS, ICONS, GST_NUMBER, UDYAM_NUMBER } from '../constants';
 
 const Footer: React.FC = () => {
@@ -9,14 +9,14 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3 group">
               <img 
                 src="/logo.png" 
                 alt={COMPANY_NAME} 
-                className="w-10 h-10 object-contain rounded-lg shadow-md"
+                className="w-10 h-10 object-contain rounded-lg shadow-md brightness-110 group-hover:scale-110 transition-transform"
               />
               <span className="text-xl font-black text-white tracking-tighter uppercase">{COMPANY_NAME}</span>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed">
               Legally registered enterprise providing premium appliance maintenance. MSME Verified service across Delhi NCR.
             </p>
@@ -30,10 +30,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold text-sm mb-6 uppercase tracking-widest">Services</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">AC Repair</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Washer Repair</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Fridge Repair</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">AMC Contracts</a></li>
+              <li><Link to="/service/ac-repair" className="hover:text-blue-400 transition-colors">AC Repair</Link></li>
+              <li><Link to="/service/washer-repair" className="hover:text-blue-400 transition-colors">Washer Repair</Link></li>
+              <li><Link to="/service/fridge-repair" className="hover:text-blue-400 transition-colors">Fridge Repair</Link></li>
+              <li><Link to="/service/amc-contracts" className="hover:text-blue-400 transition-colors">AMC Contracts</Link></li>
+              <li><Link to="/service/ac-rental" className="hover:text-blue-400 transition-colors">AC Rental</Link></li>
             </ul>
           </div>
 
@@ -52,7 +53,7 @@ const Footer: React.FC = () => {
                 <span className="text-white font-bold">{EMAIL}</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-4 h-4 mt-1">
+                <div className="w-4 h-4 mt-1 text-blue-500">
                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /></svg>
                 </div>
                 <p className="text-xs">{ADDRESS}</p>
@@ -76,6 +77,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase font-bold tracking-widest">
           <p>© {new Date().getFullYear()} {COMPANY_NAME}. Licensed Hub.</p>
           <div className="flex gap-6">
+            <Link to="/" className="hover:text-white">Home</Link>
             <a href="#" className="hover:text-white">Privacy</a>
             <a href="#" className="hover:text-white">Terms</a>
           </div>

@@ -1,28 +1,31 @@
-
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../store/store.ts';
+import { closeBooking } from '../store/slices/bookingSlice.ts';
 import { WHATSAPP_NUMBER, ICONS, COMPANY_NAME } from '../constants';
 
-interface QuickBookingModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  initialService?: string;
-}
-
-const QuickBookingModal: React.FC<QuickBookingModalProps> = ({ isOpen, onClose, initialService = 'AC Repair' }) => {
+const QuickBookingModal: React.FC = () => {
+  const dispatch = useDispatch();
+  const { isOpen, selectedService } = useSelector((state: RootState) => state.booking);
+  
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    service: initialService,
+    service: selectedService,
     message: ''
   });
 
   useEffect(() => {
-    if (initialService) {
-      setFormData(prev => ({ ...prev, service: initialService }));
+    if (selectedService) {
+      setFormData(prev => ({ ...prev, service: selectedService }));
     }
-  }, [initialService]);
+  }, [selectedService]);
 
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    dispatch(closeBooking());
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +39,7 @@ const QuickBookingModal: React.FC<QuickBookingModalProps> = ({ isOpen, onClose, 
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
     window.open(url, '_blank');
-    onClose();
+    handleClose();
   };
 
   return (
@@ -44,7 +47,7 @@ const QuickBookingModal: React.FC<QuickBookingModalProps> = ({ isOpen, onClose, 
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-950/60 backdrop-blur-md animate-fade-in"
-        onClick={onClose}
+        onClick={handleClose}
       />
       
       {/* Modal Content */}
@@ -52,7 +55,7 @@ const QuickBookingModal: React.FC<QuickBookingModalProps> = ({ isOpen, onClose, 
         <div className="bg-blue-600 p-8 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
           <button 
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-6 right-6 p-2 hover:bg-white/20 rounded-full transition-colors"
           >
             <ICONS.X className="w-6 h-6" />

@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { WHATSAPP_NUMBER, PHONE_NUMBER } from '../constants';
 
 const serviceIcons = {
@@ -60,6 +60,7 @@ const services = [
   {
     num: "01",
     title: "AC Repair & Service",
+    slug: "ac-repair",
     h3: "Reliable AC Repair in Delhi",
     desc: "Expert diagnosis and fixing of all types of Split and Window ACs. We fix cooling issues, gas leakage, and noise problems.",
     img: "ac3.png",
@@ -69,6 +70,7 @@ const services = [
   {
     num: "02",
     title: "AC Gas Filling",
+    slug: "ac-repair",
     h3: "Professional AC Gas Filling",
     desc: "Ensuring optimal cooling with precise gas pressure checks and refilling. We use high-quality R32, R410A, and R22 gases.",
     img: "ac4.png",
@@ -78,6 +80,7 @@ const services = [
   {
     num: "03",
     title: "AC Maintenance",
+    slug: "ac-repair",
     h3: "Express AC Service & Clean",
     desc: "Deep jet cleaning of indoor and outdoor units to improve efficiency and air quality. Regular maintenance to prevent breakdowns.",
     img: "technicians_work.png",
@@ -87,6 +90,7 @@ const services = [
   {
     num: "04",
     title: "AC on Rent",
+    slug: "ac-rental",
     h3: "Window & Split AC Renting",
     desc: "Affordable AC rental services for homes and offices in Delhi NCR. Low maintenance cost and quick installation.",
     img: "ac2.png",
@@ -96,6 +100,7 @@ const services = [
   {
     num: "05",
     title: "Old AC Buy & Sell",
+    slug: "ac-repair",
     h3: "Best Price for Used ACs",
     desc: "Looking to sell your old AC? We buy scrap or working ACs at the best market rates in Delhi. Instant cash payout.",
     img: "ac5.png",
@@ -105,6 +110,7 @@ const services = [
   {
     num: "06",
     title: "Washing Machine Repair",
+    slug: "washer-repair",
     h3: "Washing Machine Repair in Delhi NCR",
     desc: "Complete repair solutions for Top Load, Front Load, and Semi-Automatic washing machines by experienced technicians.",
     img: "washer.png",
@@ -114,6 +120,7 @@ const services = [
   {
     num: "07",
     title: "Fridge Repair",
+    slug: "fridge-repair",
     h3: "Fridge Repair Service Near Me",
     desc: "Double door, single door, and side-by-side refrigerator repair. Expert gas refilling and compressor replacement.",
     img: "fridge.png",
@@ -123,6 +130,7 @@ const services = [
   {
     num: "08",
     title: "AC Installation",
+    slug: "ac-repair",
     h3: "Professional AC Installation",
     desc: "Secure mounting and gas pressure testing. We provide copper piping and expert bracket fitting services.",
     img: "ac6.png",
@@ -132,6 +140,7 @@ const services = [
   {
     num: "09",
     title: "AC AMC Service",
+    slug: "amc-contracts",
     h3: "AC AMC Service in Delhi",
     desc: "Affordable Annual Maintenance Contracts (AMC). Unlimited service visits and preventive maintenance included.",
     img: "amc.png",
@@ -141,6 +150,7 @@ const services = [
   {
     num: "10",
     title: "Appliance Rentals",
+    slug: "ac-rental",
     h3: "Fridge & Washer on Rent",
     desc: "Don't want to buy? Rent high-quality washing machines and fridges at the lowest monthly prices in Rohini & Dwarka.",
     img: "acrental.png",
@@ -188,32 +198,36 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
               key={idx} 
               className="group relative bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 p-4 transition-all duration-500 hover:bg-white/15 hover:border-blue-400/40 hover:-translate-y-3"
             >
-              <div className="relative h-60 rounded-[2rem] overflow-hidden mb-6 shadow-2xl">
-                <img 
-                  src={service.img} 
-                  alt={service.h3} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-                
-                {/* Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest rounded-lg border border-white/20 shadow-xl">
-                    {service.badge}
-                  </span>
-                </div>
+              <Link to={`/service/${service.slug}`} className="block">
+                <div className="relative h-60 rounded-[2rem] overflow-hidden mb-6 shadow-2xl">
+                  <img 
+                    src={service.img} 
+                    alt={service.h3} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                  
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest rounded-lg border border-white/20 shadow-xl">
+                      {service.badge}
+                    </span>
+                  </div>
 
-                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <h4 className="text-white font-black text-xl tracking-tighter drop-shadow-lg">{service.title}</h4>
-                  <div className="bg-blue-600 text-white p-2.5 rounded-2xl shadow-xl group-hover:scale-110 group-hover:bg-blue-500 transition-all duration-300 ring-4 ring-blue-600/20">
-                    {service.icon}
+                  <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 className="text-white font-black text-xl tracking-tighter drop-shadow-lg">{service.title}</h4>
+                    <div className="bg-blue-600 text-white p-2.5 rounded-2xl shadow-xl group-hover:scale-110 group-hover:bg-blue-500 transition-all duration-300 ring-4 ring-blue-600/20">
+                      {service.icon}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               <div className="px-3 pb-4">
-                <h3 className="text-lg font-black text-white mb-3 leading-tight group-hover:text-blue-400 transition-colors">{service.h3}</h3>
+                <Link to={`/service/${service.slug}`}>
+                  <h3 className="text-lg font-black text-white mb-3 leading-tight group-hover:text-blue-400 transition-colors">{service.h3}</h3>
+                </Link>
                 <p className="text-blue-100/60 mb-6 leading-relaxed text-xs group-hover:text-blue-100/80 transition-colors h-16 line-clamp-3">{service.desc}</p>
 
                 <button 

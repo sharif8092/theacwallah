@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { COMPANY_NAME, PHONE_NUMBER, ICONS, WHATSAPP_NUMBER } from '../constants';
 
 const Header: React.FC = () => {
@@ -13,25 +13,25 @@ const Header: React.FC = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { name: 'Home', href: '#', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg> },
-    { name: 'Services', href: '#services', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
-    { name: 'Why Us', href: '#why-us', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> },
-    { name: 'About', href: '#about', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-    { name: 'Contact', href: '#contact', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> }
+    { name: 'Home', href: '/', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg> },
+    { name: 'Services', href: '/#services', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
+    { name: 'Why Us', href: '/#why-us', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> },
+    { name: 'About', href: '/#about', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+    { name: 'Contact', href: '/#contact', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> }
   ];
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    e.preventDefault();
     setIsOpen(false);
-
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.getElementById(href.replace('#', ''));
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    if (href.startsWith('/#')) {
+        // If we are on the home page, scroll to element
+        if (window.location.pathname === '/') {
+            e.preventDefault();
+            const element = document.getElementById(href.replace('/#', ''));
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }
     }
   };
 
@@ -39,13 +39,13 @@ const Header: React.FC = () => {
     <>
       <header className="sticky top-0 z-[100] backdrop-blur-xl bg-white/90 border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <div
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          <Link
+            to="/"
             className="flex items-center gap-3 cursor-pointer group"
           >
             <img 
               src="/logo.png" 
-              alt={COMPANY_NAME} 
+              alt={`${COMPANY_NAME} - Best AC Repair & Service in Delhi NCR`} 
               className="w-12 h-12 object-contain rounded-xl shadow-md transition-transform group-hover:rotate-6"
             />
             <div>
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                 Delhi NCR Experts
               </span>
             </div>
-          </div>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
@@ -88,7 +88,6 @@ const Header: React.FC = () => {
 
       {/* MOBILE SIDEBAR */}
       <div className={`fixed inset-0 z-[1000] lg:hidden ${isOpen ? 'visible' : 'invisible'}`}>
-        {/* Dark Overlay with Blur */}
         <div
           onClick={() => setIsOpen(false)}
           className={`absolute inset-0 bg-slate-950/20 backdrop-blur-md transition-opacity duration-500 ${
@@ -96,7 +95,6 @@ const Header: React.FC = () => {
           }`}
         />
 
-        {/* Floating Sidebar Panel - iOS Style Glassmorphism Black Refined */}
         <div
           className={`absolute right-4 w-[85%] max-w-[340px] bg-white/70 backdrop-blur-3xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
           ${isOpen ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-[110%] opacity-0 scale-95'}
@@ -107,20 +105,20 @@ const Header: React.FC = () => {
             borderRadius: '2.5rem'
           }}
         >
-          {/* Frosted Black Header with Color Grading */}
           <div className="bg-gradient-to-br from-slate-900/95 to-black/90 backdrop-blur-xl p-6 flex justify-between items-center rounded-t-[2.5rem] border-b border-white/10 shadow-sm">
-            <div className="flex items-center gap-3">
-              {/* Updated logo text color to blue */}
-              <img 
-                src="/logo.png" 
-                alt={COMPANY_NAME} 
-                className="w-10 h-10 object-contain rounded-xl border border-blue-500/20 shadow-inner"
-              />
+            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 group" aria-label={`${COMPANY_NAME} Home`}>
+              <div className="relative">
+                <img 
+                  src="/logo.png" 
+                  alt={`${COMPANY_NAME} - Professional AC Repair & Service Delhi`}
+                  className="w-10 h-10 md:w-12 md:h-12 object-contain brightness-110 group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-black text-white text-[13px] uppercase tracking-widest leading-none">Main Menu</span>
                 <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1 opacity-80">Authorized Hub</span>
               </div>
-            </div>
+            </Link>
             <button
               onClick={() => setIsOpen(false)}
               className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white active:scale-90 transition hover:bg-white/20"
@@ -129,7 +127,6 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Navigation Links Area */}
           <div className="flex-1 overflow-y-auto px-5 py-8 space-y-2 scrollbar-hide">
              <p className="px-4 text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-5">Quick Access</p>
             {navLinks.map((link, index) => {
@@ -185,7 +182,6 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Panel Footer - Premium Grading */}
           <div className="p-6 bg-white/20 backdrop-blur-xl border-t border-black/5 text-center rounded-b-[2.5rem]">
             <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-1 leading-none">{COMPANY_NAME} Delhi</p>
             <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest opacity-60">Authorized Service Hub • NCR</p>
