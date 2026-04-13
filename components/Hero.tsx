@@ -55,63 +55,53 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   // }, []);
 
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
-      {/* Background Slider */}
-      <div className="absolute inset-0 z-0">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-[1500ms] ease-out ${
-              index === currentSlide ? 'opacity-30 scale-100' : 'opacity-0 scale-110'
-            }`}
-          >
-            <img 
-              src={slide.bgImage} 
-              alt={slide.title} 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
-        <div className="absolute inset-0 bg-dots opacity-10"></div>
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-brand-950">
+      {/* Premium Background Mesh */}
+      <div className="absolute inset-0 z-0 bg-mesh-blue opacity-40"></div>
+      <div className="absolute inset-0 z-0 bg-dots opacity-40"></div>
+
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
+        <div className="w-[80vw] h-[80vw] bg-brand-600/10 rounded-full blur-[120px] animate-pulse"></div>
       </div>
 
       <div className="container mx-auto px-6 md:px-8 relative z-10 py-16 md:py-0">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Text Content */}
-          <div className={`w-full lg:w-1/2 transition-all duration-700 ${isChanging ? 'opacity-0 -translate-y-5 lg:-translate-x-10' : 'opacity-100 translate-y-0 lg:translate-x-0'}`}>
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 backdrop-blur-xl border border-blue-400/30 px-4 py-1.5 rounded-full mb-6">
-              <span className="relative flex h-2 w-2">
+          <div className={`w-full lg:w-1/2 transition-all duration-1000 ${isChanging ? 'opacity-0 -translate-y-5 lg:-translate-x-10' : 'opacity-100 translate-y-0 lg:translate-x-0'}`}>
+            <div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-3xl border border-white/10 px-5 py-2 rounded-full mb-8 shadow-2xl">
+              <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
               </span>
-              <span className="text-blue-100 text-[10px] font-black uppercase tracking-[0.2em]">
+              <span className="text-blue-100/80 text-[10px] font-black uppercase tracking-[0.3em]">
                 {slides[currentSlide].highlight}
               </span>
             </div>
 
-            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] md:leading-[0.95] mb-6 tracking-tight">
+            <h1 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-display text-white leading-[1] md:leading-[0.9] mb-8 tracking-tighter">
               {slides[currentSlide].title}
             </h1>
 
-            <p className="text-base xs:text-lg md:text-2xl text-blue-100/70 mb-8 max-w-xl leading-relaxed font-medium">
+            <p className="text-lg xs:text-xl md:text-2xl text-blue-100/60 mb-10 max-w-xl leading-relaxed font-medium">
               {slides[currentSlide].subtitle}
             </p>
 
-            <div className="flex flex-col xs:flex-row gap-4 mb-12">
+            <div className="flex flex-col xs:flex-row gap-5 mb-16">
               <button 
                 onClick={onOpenBooking}
-                className="w-full xs:w-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 md:px-10 md:py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-[0_20px_40px_-10px_rgba(37,99,235,0.5)] active:scale-95 animate-pulse-ring"
+                className="w-full xs:w-auto bg-brand-600 hover:bg-brand-500 text-white px-10 py-5 md:px-12 md:py-6 rounded-[2rem] font-black font-display text-lg flex items-center justify-center gap-3 transition-all shadow-[0_20px_60px_-15px_rgba(37,99,235,0.6)] active:scale-95 group"
               >
                 {slides[currentSlide].cta}
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </button>
               <a 
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full xs:w-auto bg-white/5 backdrop-blur-xl text-white border border-white/10 px-8 py-4 md:px-10 md:py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 active:scale-95"
+                className="w-full xs:w-auto bg-white/5 backdrop-blur-2xl text-white border border-white/10 px-10 py-5 md:px-12 md:py-6 rounded-[2rem] font-black font-display text-lg flex items-center justify-center gap-3 active:scale-95 hover:bg-white/10 transition-all"
               >
                 <ICONS.WhatsApp className="w-6 h-6 text-green-400" />
                 WhatsApp

@@ -7,6 +7,7 @@ import WhyChooseUs from '../components/WhyChooseUs.tsx';
 import About from '../components/About.tsx';
 import Reviews from '../components/Reviews.tsx';
 import Contact from '../components/Contact.tsx';
+import CommercialHVAC from '../components/CommercialHVAC.tsx';
 import FloatingActions from '../components/FloatingActions.tsx';
 
 const Home: React.FC = () => {
@@ -21,6 +22,7 @@ const Home: React.FC = () => {
       <main className="pb-24 md:pb-0">
         <Hero onOpenBooking={() => handleOpenBooking()} />
         <Services onOpenBooking={(s) => handleOpenBooking(s)} />
+        <CommercialHVAC />
         <WhyChooseUs />
         <About />
         <Reviews />

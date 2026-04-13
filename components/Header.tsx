@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../store/store';
+import { logout } from '../store/slices/authSlice';
 import { COMPANY_NAME, PHONE_NUMBER, ICONS, WHATSAPP_NUMBER } from '../constants';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { user } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -15,7 +21,7 @@ const Header: React.FC = () => {
   const navLinks = [
     { name: 'Home', href: '/', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg> },
     { name: 'Services', href: '/#services', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
-    { name: 'Why Us', href: '/#why-us', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> },
+    { name: 'Blog', href: '/blog', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" /><path d="M14 4v4h4" /></svg> },
     { name: 'About', href: '/#about', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
     { name: 'Contact', href: '/#contact', icon: (props: any) => <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" {...props}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> }
   ];
@@ -37,22 +43,25 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] backdrop-blur-xl bg-white/90 border-b border-gray-100 shadow-sm">
+      <header className="sticky top-0 z-[100] bg-white/70 backdrop-blur-2xl border-b border-slate-100 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <Link
             to="/"
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <img 
-              src="/logo.png" 
-              alt={`${COMPANY_NAME} - Best AC Repair & Service in Delhi NCR`} 
-              className="w-12 h-12 object-contain rounded-xl shadow-md transition-transform group-hover:rotate-6"
-            />
+            <div className="relative">
+              <img 
+                src="/logo.png" 
+                alt={`${COMPANY_NAME} - Best AC Repair & Service in Delhi NCR`} 
+                className="w-12 h-12 object-contain rounded-2xl shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-blue-200 brightness-0 invert mix-blend-screen"
+              />
+              <div className="absolute inset-0 bg-blue-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
             <div>
-              <span className="block text-xl font-black text-slate-900 uppercase tracking-tighter leading-none">
+              <span className="block text-xl font-black font-display text-slate-900 uppercase tracking-tighter leading-none">
                 {COMPANY_NAME}
               </span>
-              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-1 block">
+              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-1 block opacity-80">
                 Delhi NCR Experts
               </span>
             </div>
@@ -69,6 +78,28 @@ const Header: React.FC = () => {
                 {link.name}
               </a>
             ))}
+            <div className="flex items-center gap-4">
+
+               {/* Auth */}
+               {user ? (
+                 <div className="relative group">
+                    <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-bold text-sm tracking-widest uppercase">
+                       <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                          {user.user_nicename?.charAt(0).toUpperCase()}
+                       </div>
+                    </button>
+                    <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[110]">
+                       <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 w-48">
+                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 px-2">Account</p>
+                         <button onClick={() => dispatch(logout())} className="w-full text-left p-2 rounded-xl text-sm font-bold text-slate-600 hover:bg-red-50 hover:text-red-500 transition-colors">Sign Out</button>
+                       </div>
+                    </div>
+                 </div>
+               ) : (
+                 <Link to="/login" className="text-sm font-bold text-slate-600 hover:text-blue-600 uppercase tracking-widest">Login</Link>
+               )}
+            </div>
+
             <a
               href={`tel:${PHONE_NUMBER}`}
               className="bg-blue-600 text-white px-8 py-3 rounded-full font-black text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl shadow-blue-100"

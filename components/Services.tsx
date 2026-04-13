@@ -182,9 +182,9 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
             <span className="text-blue-100 font-black text-[10px] uppercase tracking-[0.3em]">Authorized Center</span>
           </div>
           
-          <h2 className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
+          <h2 className="text-5xl md:text-8xl font-black font-display text-white mb-8 leading-[0.95] tracking-tighter">
             Professional <br />
-            <span className="text-blue-400">Services</span>
+            <span className="text-blue-500">Services</span>
           </h2>
           
           <p className="text-lg md:text-2xl text-blue-100/70 leading-relaxed max-w-2xl mx-auto">
@@ -192,14 +192,14 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {services.map((service, idx) => (
             <div 
               key={idx} 
-              className="group relative bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 p-4 transition-all duration-500 hover:bg-white/15 hover:border-blue-400/40 hover:-translate-y-3"
+              className="group relative bg-white/5 backdrop-blur-3xl rounded-[3rem] border border-white/10 p-5 transition-all duration-700 hover:bg-white/10 hover:border-blue-400/30 hover:-translate-y-4 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)]"
             >
               <Link to={`/service/${service.slug}`} className="block">
-                <div className="relative h-60 rounded-[2rem] overflow-hidden mb-6 shadow-2xl">
+                <div className="relative h-72 rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl">
                   <img 
                     src={service.img} 
                     alt={service.h3} 
@@ -226,9 +226,9 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
 
               <div className="px-3 pb-4">
                 <Link to={`/service/${service.slug}`}>
-                  <h3 className="text-lg font-black text-white mb-3 leading-tight group-hover:text-blue-400 transition-colors">{service.h3}</h3>
+                  <h3 className="text-xl font-black font-display text-white mb-4 leading-tight group-hover:text-blue-400 transition-colors uppercase tracking-tight">{service.h3}</h3>
                 </Link>
-                <p className="text-blue-100/60 mb-6 leading-relaxed text-xs group-hover:text-blue-100/80 transition-colors h-16 line-clamp-3">{service.desc}</p>
+                <p className="text-blue-100/50 mb-8 leading-relaxed text-sm group-hover:text-blue-100/70 transition-colors h-20 line-clamp-3 font-medium">{service.desc}</p>
 
                 <button 
                   onClick={() => onOpenBooking(service.title)}
@@ -242,19 +242,20 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
           ))}
         </div>
 
-        <div className="mt-20">
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 group/banner hover:border-blue-400/30 transition-all duration-500">
-             <div className="text-center lg:text-left">
-               <h4 className="text-2xl md:text-4xl font-black text-white mb-2 group-hover/banner:translate-x-1 transition-transform">Need a Rental AC?</h4>
-               <p className="text-blue-100/70 text-base md:text-lg">Special prices for <span className="text-white font-bold underline decoration-blue-500 decoration-2 underline-offset-4">Delhi NCR </span>. Units starting at ₹12000/session</p>
+        <div className="mt-32">
+          <div className="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-[3rem] p-10 md:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 group/banner hover:border-blue-400/20 transition-all duration-700 shadow-2xl relative overflow-hidden">
+             <div className="absolute inset-0 bg-mesh-blue opacity-5"></div>
+             <div className="text-center lg:text-left relative z-10">
+               <h4 className="text-3xl md:text-5xl font-black font-display text-white mb-4 group-hover/banner:translate-x-2 transition-transform">Need a Rental AC?</h4>
+               <p className="text-blue-100/60 text-lg md:text-xl font-medium">Special prices for <span className="text-white font-bold underline decoration-blue-500 decoration-4 underline-offset-8">Delhi NCR </span>. Units starting at ₹12000/session</p>
              </div>
-             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                <a href={`tel:${PHONE_NUMBER}`} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-black text-center flex items-center justify-center gap-3 transition-all shadow-xl hover:shadow-blue-600/30 hover:-translate-y-1 active:scale-95">
+             <div className="flex flex-col sm:flex-row gap-5 w-full lg:w-auto relative z-10">
+                <a href={`tel:${PHONE_NUMBER}`} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-500 text-white px-10 py-5 rounded-2xl font-black font-display text-center flex items-center justify-center gap-3 transition-all shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:-translate-y-2 active:scale-95">
                   Check Availability
                 </a>
                 <button 
                   onClick={() => onOpenBooking('AC Rental Query')}
-                  className="w-full sm:w-auto bg-white/10 text-white border border-white/10 px-8 py-4 rounded-2xl font-black transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 active:scale-95"
+                  className="w-full sm:w-auto bg-white/5 text-white border border-white/10 px-10 py-5 rounded-2xl font-black font-display transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-2 active:scale-95"
                 >
                   Get A Quote
                 </button>

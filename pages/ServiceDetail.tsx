@@ -1,40 +1,51 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { openBooking } from '../store/slices/bookingSlice.ts';
+import { RootState, AppDispatch } from '../store/store.ts';
 import FloatingActions from '../components/FloatingActions.tsx';
 import Contact from '../components/Contact.tsx';
 import Reviews from '../components/Reviews.tsx';
 import { COMPANY_NAME, PHONE_NUMBER } from '../constants.tsx';
 import * as ICONS from 'lucide-react';
 
-const serviceData: Record<string, { title: string; description: string; features: string[]; icon: string }> = {
+const serviceData: Record<string, { id: number; title: string; price: number; description: string; features: string[]; icon: string }> = {
   'ac-repair': {
+    id: 101,
     title: 'Expert AC Repair',
+    price: 499,
     description: 'Get your air conditioner working perfectly with our expert repair services. We handle all brands and models, ensuring quick cooling and efficient performance.',
     features: ['Gas Refilling', 'PCB Repair', 'Cleaning & Servicing', 'Capacitor Replacement', 'Leakage Fix'],
     icon: 'Snowflake'
   },
   'washer-repair': {
+    id: 102,
     title: 'Washing Machine Repair',
+    price: 399,
     description: 'Specialized repair for top-load, front-load, and semi-automatic washing machines. We use genuine parts to ensure your machine lasts longer.',
     features: ['Drum Fix', 'Motor Repair', 'Timer Replacement', 'Inlet Valve Fix', 'Noise Reduction'],
     icon: 'WashingMachine'
   },
   'fridge-repair': {
+    id: 103,
     title: 'Refrigerator Repair',
+    price: 599,
     description: 'Fast and reliable fridge repair services. We fix cooling issues, gas leaks, and compressor problems for all major brands.',
     features: ['Compressor Repair', 'Gas Charging', 'Thermostat Replacement', 'Defrost Timer Fix', 'Door Seal Replacement'],
     icon: 'Refrigerator'
   },
   'amc-contracts': {
+    id: 104,
     title: 'Annual Maintenance Contracts',
+    price: 1999,
     description: 'Ensure your appliances stay in top shape year-round with our AMC services. Regular maintenance saves money and prevents unexpected breakdowns.',
     features: ['Bi-Annual Service', 'Priority Support', 'No Service Charges', 'Extended Life', 'Genuine Spare Parts'],
     icon: 'ShieldCheck'
   },
   'ac-rental': {
+    id: 105,
     title: 'AC Rental Service',
+    price: 1500,
     description: 'Looking for a temporary cooling solution? Rent high-quality window or split ACs at the most affordable rates in Delhi NCR.',
     features: ['Fast Installation', 'Monthly Plans', 'Free Maintenance', 'Low Security Deposit', 'Premium Brands'],
     icon: 'Wind'
@@ -43,13 +54,14 @@ const serviceData: Record<string, { title: string; description: string; features
 
 const ServiceDetail: React.FC = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const data = serviceId ? serviceData[serviceId] : null;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [serviceId]);
+
 
   if (!data) {
     return (
@@ -86,7 +98,7 @@ const ServiceDetail: React.FC = () => {
                 onClick={() => dispatch(openBooking(data.title))}
                 className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition shadow-xl flex items-center gap-3"
               >
-                <ICONS.Calendar className="w-5 h-5" /> Book This Service
+                <ICONS.Calendar className="w-5 h-5" /> Quick Booking
               </button>
               <a 
                 href={`tel:${PHONE_NUMBER}`}
